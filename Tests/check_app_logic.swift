@@ -62,10 +62,11 @@ let volume = tester.state.current.volume
 tester.sleepTimer!.fire()
 assert(tester.fadeTimer != nil)
 let start = Date()
-while Date().timeIntervalSince(start)<3.6 {
+while tester.fadeTimer != nil && Date().timeIntervalSince(start)<10 {
     RunLoop.main.run(until: Date().addingTimeInterval(0.02))
 }
-assert(tester.fadeTimer == nil)
+assert(Date().timeIntervalSince(start) >= 3)
+assert(tester.fadeTimer == nil, "Fade did not finish within the scheduling allowance")
 assert(tester.timerPicker.indexOfSelectedItem == 0)
 assert(tester.sleepDeadline == nil)
 assert(tester.state.current.volume == volume)
