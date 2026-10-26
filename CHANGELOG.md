@@ -8,6 +8,7 @@ First public open-source edition of QuietBar.
 - Native menu bar popover, Liquid Glass on macOS 26, full mixer, presets and sleep timer.
 - Isolated public-edition settings storage.
 - Audio initialization cleanup and C lifecycle guards.
+- Sleep fade uses elapsed time, so delayed timer callbacks do not stretch its duration.
 - Silent audio, state, timer and panel tests; CI and Dependabot.
 - MIT license, contribution guidance, security reporting and release documentation.
 

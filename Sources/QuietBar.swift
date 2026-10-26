@@ -531,11 +531,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     }
     func beginFade() {
         animationTimer?.invalidate(); animationTimer = nil; sleepDeadline = nil
-        let initial = state.current.volume; var tick = 0
+        let initial = state.current.volume
+        let started = ProcessInfo.processInfo.systemUptime
         let timer = Timer(timeInterval: 0.1, repeats: true) { [weak self] timer in
             guard let self, let player = self.player else { timer.invalidate(); return }
-            tick += 1; qb_master(player.core, initial * max(0,1-Double(tick)/30))
-            if tick >= 30 { timer.invalidate(); self.fadeTimer = nil; player.pause(); player.apply(self.state.current); self.timerPicker.selectItem(at: 0); self.refreshTransport() }
+            let progress = min(1, (ProcessInfo.processInfo.systemUptime - started) / 3)
+            qb_master(player.core, initial * max(0, 1 - progress))
+            if progress >= 1 { timer.invalidate(); self.fadeTimer = nil; player.pause(); player.apply(self.state.current); self.timerPicker.selectItem(at: 0); self.refreshTransport() }
         }
         RunLoop.main.add(timer, forMode: .common); fadeTimer = timer
     }
