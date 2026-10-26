@@ -1,0 +1,11 @@
+{
+  "name": "Foco",
+  "mix": {
+    "levels": [0.42, 0.55, 0.64, 0.75, 0.53, 0.58, 0.47, 0.35, 0.30, 0.26],
+    "volume": 0.5,
+    "width": 1,
+    "animation": false,
+    "speed": 1,
+    "dynamics": true
+  }
+}

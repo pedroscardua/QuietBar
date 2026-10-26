@@ -1,0 +1,22 @@
+name: Bug report / Erro
+description: Report a reproducible problem / Relatar um problema reproduzível
+labels: [bug]
+body:
+  - type: input
+    id: environment
+    attributes:
+      label: QuietBar version, macOS version and Mac architecture
+      placeholder: 1.2.0, macOS 26, Apple Silicon
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps, expected behavior and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Additional details
+      description: Screenshots or logs if useful. Remove personal paths and private presets.
